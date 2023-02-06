@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useTodoStore } from "../store";
+import "./AddTodo.css";
 
 function AddTodo() {
   const addTodoText = "Add todo";
@@ -33,11 +34,25 @@ function AddTodo() {
 
   return (
     <form onSubmit={addTodoHandler}>
-      <input type="text" name="text" id="text" placeholder="Todo text" onChange={handleFieldChange} value={fields.text} />
-      <input type="text" name="description" id="description" placeholder="Todo description" onChange={handleFieldChange} value={fields.description} />
+      <input
+        type="text"
+        name="text"
+        id="text"
+        placeholder="Todo text"
+        onChange={handleFieldChange}
+        value={fields.text}
+      />
+      <input
+        type="text"
+        name="description"
+        id="description"
+        placeholder="Todo description"
+        onChange={handleFieldChange}
+        value={fields.description}
+      />
       <button type="submit">{addTodoText}</button>
     </form>
-  )
+  );
 }
 
 export { AddTodo };

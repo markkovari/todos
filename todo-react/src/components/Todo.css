@@ -1,3 +1,22 @@
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2rem;
+    border-radius: 20px;
+}
+
 .done {
     text-decoration: line-through;
+    background-color: darkgrey;
+    color: wheat;
+}
+
+.todo {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2rem;
+    flex-grow: 6;
 }

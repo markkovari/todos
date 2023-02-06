@@ -1,0 +1,13 @@
+form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2rem;
+    width: 100%;
+}
+
+input {
+    height: 2rem;
+    padding: 0 .3rem;
+}
