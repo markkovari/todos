@@ -36,7 +36,7 @@ const useTodoStore = create<TodoState & TodoStateActions>()(
         todos: [],
         addTodo: (todo: TodoDetails) => {
           set((state: TodoState) => ({
-            todos: [...state.todos, { ...todo, id: uuidv4(), isDone: false } as Todo]
+            todos: [...state.todos, { ...todo, id: uuidv4(), isDone: false }]
           }))
         },
         removeTodo: (id: UUID) => {

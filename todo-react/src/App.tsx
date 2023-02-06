@@ -11,12 +11,10 @@ import { AddTodo } from './components/AddTodo';
 function App() {
   const noTodosText = "No todos";
 
-  const todos = useTodoStore(state => state.todos)
+  const todos = useTodoStore(state => state.todos);
 
   const renderTodos = () => todos.length == 0 ? <p>{noTodosText}</p> :
-    todos.map(todo => {
-      <Todo key={todo.id} {...todo} />
-    })
+    todos.map(todo => <Todo key={todo.id} {...todo} />)
 
   return (
     <div className="App">

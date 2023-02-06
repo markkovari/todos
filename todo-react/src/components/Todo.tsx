@@ -1,16 +1,19 @@
 import { Todo, useTodoStore, UUID } from "../store";
+import "./Todo.css";
 
 function Todo({ id, isDone, text, description }: Todo) {
+  const { toggleTodo } = useTodoStore();
+
   function toggleDone(id: UUID) {
-    const todoStore = useTodoStore();
-    todoStore.toggleTodo(id);
+    toggleTodo(id);
   }
 
   return (
-    <>
-      <div onClick={() => toggleDone(id)}>{text}</div>
+    <section className={isDone ? "done" : ""}
+      onClick={() => toggleDone(id)}>
+      <div>{text}</div>
       <div>{description}</div>
-    </>
+    </section>
   )
 }
 

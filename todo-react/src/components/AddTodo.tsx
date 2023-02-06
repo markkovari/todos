@@ -3,31 +3,38 @@ import { useTodoStore } from "../store";
 
 function AddTodo() {
   const addTodoText = "Add todo";
+
+  const { addTodo } = useTodoStore();
+
   const [fields, setFields] = useState({
     text: "",
     description: "",
   });
+
+  function resetFields() {
+    setFields({ text: "", description: "" });
+  }
 
   function handleFieldChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.currentTarget;
     setFields({ ...fields, [name]: value });
   }
 
-  function addTodo(event: React.FormEvent<HTMLFormElement>) {
+  function addTodoHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const [addTodo] = useTodoStore(
-      (state) => [state.addTodo],
-    );
+    if (!fields.text) return;
+    if (!fields.description) return;
     addTodo({
       ...fields,
       isDone: false,
     });
+    resetFields();
   }
 
   return (
-    <form onSubmit={(e) => addTodo(e)}>
-      <input type="text" name="text" id="text" placeholder="Todo text" onChange={handleFieldChange} />
-      <input type="text" name="description" id="description" placeholder="Todo description" onChange={handleFieldChange} />
+    <form onSubmit={addTodoHandler}>
+      <input type="text" name="text" id="text" placeholder="Todo text" onChange={handleFieldChange} value={fields.text} />
+      <input type="text" name="description" id="description" placeholder="Todo description" onChange={handleFieldChange} value={fields.description} />
       <button type="submit">{addTodoText}</button>
     </form>
   )
