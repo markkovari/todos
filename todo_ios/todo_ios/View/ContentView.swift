@@ -11,46 +11,54 @@ import CoreData
 struct ContentView: View {
     private var title: String = "Todos"
     @Environment(\.managedObjectContext) private var viewContext
-
+    
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Todo.timestamp, ascending: true)],
         animation: .default)
-    private var items: FetchedResults<Item>
-
+    private var todos: FetchedResults<Todo>
+    
+    
+    @State var isSheetOpen: Bool = false
+    
     var body: some View {
         NavigationView {
-            
             List {
-                ForEach(items) { item in
+                ForEach(todos) { todo in
                     NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+                        Text("Item at \(todo.timestamp!, formatter: itemFormatter)")
                     } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+                        Text(todo.timestamp!, formatter: itemFormatter)
                     }
                 }
                 .onDelete(perform: deleteItems)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                    Button{
+                        isSheetOpen = true
+                    } label: {
+                        Image(systemName: "plus.app")
                     }
                 }
             }
             Text("Select an item")
+                
         }
         .navigationTitle(title)
-
+        .sheet(isPresented: $isSheetOpen) {
+            Text("show add")
+        }
+        
     }
-
-    private func addItem() {
+    
+    private func addItem(description:String, title:String, dueDate: Date) {
         withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
+            let newTodo = Todo(context: viewContext)
+            newTodo.timestamp = Date()
+            newTodo.desc = description
+            newTodo.title = title
+            newTodo.dueDate = dueDate
+            newTodo.isDone = false
             do {
                 try viewContext.save()
             } catch {
@@ -61,11 +69,11 @@ struct ContentView: View {
             }
         }
     }
-
+    
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
+            offsets.map { todos[$0] }.forEach(viewContext.delete)
+            
             do {
                 try viewContext.save()
             } catch {
@@ -88,13 +96,6 @@ private let itemFormatter: DateFormatter = {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-    
-    }
-}
-
-struct ContentView_Previews_Dark: PreviewProvider {
-    static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-            .preferredColorScheme(.dark)
+        
     }
 }
