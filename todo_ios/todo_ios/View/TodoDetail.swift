@@ -32,6 +32,7 @@ struct TodoDetail: View {
                     .disabled(true)
             }
         }
+        .padding(0)
     }
 }
 

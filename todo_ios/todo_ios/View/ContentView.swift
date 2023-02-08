@@ -17,7 +17,6 @@ struct ContentView: View {
         animation: .default)
     private var todos: FetchedResults<Todo>
     
-    
     @State var isSheetOpen: Bool = false
     
     var body: some View {
@@ -25,9 +24,9 @@ struct ContentView: View {
             List {
                 ForEach(todos) { todo in
                     NavigationLink {
-                        Text("Item at \(todo.timestamp!, formatter: itemFormatter)")
-                    } label: {
                         TodoDetail(todo: todo)
+                    } label: {
+                        Text("Item at \(todo.timestamp!, formatter: itemFormatter)")
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -44,9 +43,8 @@ struct ContentView: View {
         }
         .navigationTitle(title)
         .sheet(isPresented: $isSheetOpen) {
-            Text("show add")
+            AddTodoView()
         }
-        
     }
     
     private func addItem(description:String, title:String, dueDate: Date) {
