@@ -56,6 +56,8 @@
 		A4E892D12993905D001220A9 /* todo_ios */ = {
 			isa = PBXGroup;
 			children = (
+				A4E892E7299392BE001220A9 /* Model */,
+				A4E892E6299392B6001220A9 /* View */,
 				A4E892D22993905D001220A9 /* todo_iosApp.swift */,
 				A4E892D42993905D001220A9 /* ContentView.swift */,
 				A4E892D62993905D001220A9 /* Assets.xcassets */,
@@ -73,6 +75,20 @@
 				A4E892D92993905D001220A9 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A4E892E6299392B6001220A9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A4E892E7299392BE001220A9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
