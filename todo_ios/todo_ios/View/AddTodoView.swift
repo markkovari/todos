@@ -10,8 +10,8 @@ import SwiftUI
 struct AddTodoView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
-
     @Environment(\.dismiss) private var dismiss
+    
     @State var title = ""
     var titleText: String = "Title"
     
@@ -40,11 +40,14 @@ struct AddTodoView: View {
             Toggle(isOn: $isDone) {
                 Text("IsDone")
             }
-            Button(addButtonText) {
-                addFromForm()
+            HStack {
+                Button(addButtonText) {
+                    addFromForm()
+                }
+                .frame(maxWidth: .infinity)
+                .tint(.blue)
+                .disabled(!canAdd())
             }
-            .buttonStyle(BorderlessButtonStyle())
-            .disabled(!canAdd())
         }
         .formStyle(GroupedFormStyle())
     }
@@ -64,8 +67,6 @@ struct AddTodoView: View {
             do {
                 try viewContext.save()
             } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
@@ -80,6 +81,8 @@ struct AddTodoView: View {
 
 struct AddTodoView_Previews: PreviewProvider {
     static var previews: some View {
-        AddTodoView()
+        Group {
+            AddTodoView()
+        }
     }
 }
