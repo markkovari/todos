@@ -13,6 +13,11 @@ struct TodoDetail: View {
     @State var todo: Todo
     
     var body: some View {
-        Text(todo.title ?? "")
+        VStack{
+            Text(todo.title!)
+                .bold()
+            Text(todo.timestamp!, formatter: itemFormatter)
+
+        }
     }
 }
