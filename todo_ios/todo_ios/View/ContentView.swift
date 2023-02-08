@@ -26,10 +26,11 @@ struct ContentView: View {
                     NavigationLink {
                         TodoDetail(todo: todo)
                     } label: {
-                        Text("Item at \(todo.timestamp!, formatter: itemFormatter)")
+                        TodoRowItem(todo: todo)
                     }
                 }
                 .onDelete(perform: deleteItems)
+                
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -41,12 +42,12 @@ struct ContentView: View {
                 }
             }
             .navigationTitle(title)
+            
         }
         .sheet(isPresented: $isSheetOpen) {
             AddTodoView()
         }
     }
-
     
     private func deleteItems(offsets: IndexSet) {
         withAnimation {

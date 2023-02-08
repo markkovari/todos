@@ -10,29 +10,23 @@ import SwiftUI
 
 struct TodoDetail: View {
     
-    @State var todo: Todo
+    var todo: FetchedResults<Todo>.Element
     var paddingBase: CGFloat = 24.0
     
     var body: some View {
         HStack {
             GroupBox(todo.title!) {
-                Spacer()
                 HStack {
                     Text("created:")
-                    Spacer()
                     Text(todo.timestamp!, formatter: itemFormatter)
                 }
-                Spacer()
                 HStack {
                     Text("due:")
-                    Spacer()
                     Text(todo.dueDate!, formatter: itemFormatter)
                 }
-                Toggle("DONE", isOn: $todo.isDone)
-                    .disabled(true)
             }
         }
-        .padding(0)
+        Spacer()
     }
 }
 
@@ -43,6 +37,7 @@ struct TodoDetailPreview: PreviewProvider {
     static var doneExample: Todo = {
         let context = persistence.container.viewContext
         let todo = Todo(context: context)
+        todo.id = UUID()
         todo.timestamp = Date()
         todo.dueDate = Date.now.addingTimeInterval(60*60*24)
         todo.title = "Some done todo"
@@ -53,6 +48,7 @@ struct TodoDetailPreview: PreviewProvider {
     static var unDoneExample: Todo = {
         let context = persistence.container.viewContext
         let todo = Todo(context: context)
+        todo.id = UUID()
         todo.timestamp = Date()
         todo.dueDate = Date.now
         todo.title = "Some undone todo"
@@ -70,6 +66,5 @@ struct TodoDetailPreview: PreviewProvider {
             
         }
         .environment(\.managedObjectContext, persistence.container.viewContext)
-        
     }
 }
