@@ -20,6 +20,7 @@ struct PersistenceController {
             newItem.title = "title: \(i)"
             newItem.isDone = false
             newItem.desc = "desc \(i)"
+            newItem.dueDate = Date.now
         }
         do {
             try viewContext.save()

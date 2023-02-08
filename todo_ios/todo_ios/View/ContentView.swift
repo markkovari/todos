@@ -41,8 +41,6 @@ struct ContentView: View {
                     }
                 }
             }
-            Text("Select an item")
-                
         }
         .navigationTitle(title)
         .sheet(isPresented: $isSheetOpen) {
