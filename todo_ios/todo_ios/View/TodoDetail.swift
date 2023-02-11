@@ -10,23 +10,47 @@ import SwiftUI
 
 struct TodoDetail: View {
     
-    var todo: FetchedResults<Todo>.Element
+    @ObservedObject var todo: Todo
     var paddingBase: CGFloat = 24.0
     
+    @State var isSheetOpen = false
+    
     var body: some View {
-        HStack {
-            GroupBox(todo.title!) {
+        Group {
+            VStack {
                 HStack {
-                    Text("created:")
-                    Text(todo.timestamp!, formatter: itemFormatter)
+                    Text(todo.title ?? "")
+                    Spacer()
+                    Image(systemName: todo.isDone ? "checkmark.seal.fill" : "checkmark.seal")
                 }
+                Spacer()
                 HStack {
-                    Text("due:")
-                    Text(todo.dueDate!, formatter: itemFormatter)
+                    Text("description")
+                    Spacer()
+                    Text(todo.desc ?? "")
+                }
+                Spacer()
+                HStack {
+                    Text("created")
+                    Spacer()
+                    Text(todo.timestamp ?? Date.now, formatter: itemFormatter)
+                }
+                Spacer()
+                HStack {
+                    Text("due")
+                    Spacer()
+                    Text(todo.dueDate ?? Date.now, formatter: itemFormatter)
+                }
+                Spacer()
+                NavigationLink {
+                    TodoEditor(todo: todo)
+                } label: {
+                    Text("Edit")
                 }
             }
+            .frame(maxHeight: 240)
+            Spacer()
         }
-        Spacer()
     }
 }
 
@@ -41,6 +65,7 @@ struct TodoDetailPreview: PreviewProvider {
         todo.timestamp = Date()
         todo.dueDate = Date.now.addingTimeInterval(60*60*24)
         todo.title = "Some done todo"
+        todo.desc = "Some description"
         todo.isDone = true
         return todo
     }()
@@ -57,14 +82,7 @@ struct TodoDetailPreview: PreviewProvider {
     }()
     
     static var previews: some View {
-        VStack {
-            Spacer()
-            TodoDetail(todo: doneExample)
-            Spacer()
-            TodoDetail(todo: unDoneExample)
-            Spacer()
-            
-        }
-        .environment(\.managedObjectContext, persistence.container.viewContext)
+        TodoDetail(todo: doneExample)
+            .environment(\.managedObjectContext, persistence.container.viewContext)
     }
 }

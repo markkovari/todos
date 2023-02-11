@@ -30,7 +30,6 @@ struct ContentView: View {
                     }
                 }
                 .onDelete(perform: deleteItems)
-                
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -42,7 +41,6 @@ struct ContentView: View {
                 }
             }
             .navigationTitle(title)
-            
         }
         .sheet(isPresented: $isSheetOpen) {
             AddTodoView()
@@ -52,13 +50,7 @@ struct ContentView: View {
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             offsets.map { todos[$0] }.forEach(viewContext.delete)
-            
-            do {
-                try viewContext.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+            try? viewContext.save()
         }
     }
 }

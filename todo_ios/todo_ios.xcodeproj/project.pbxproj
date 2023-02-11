@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A411B1AC2993FD5A00F6EEC4 /* AddTodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A411B1AB2993FD5A00F6EEC4 /* AddTodoView.swift */; };
+		A41EFFEB2995565100EC311E /* TodoEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41EFFEA2995565100EC311E /* TodoEditor.swift */; };
 		A4DB1BB22993978500568994 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DB1BB12993978500568994 /* DateHelper.swift */; };
 		A4DB27692994341200FFB62C /* TodoRowItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DB27682994341200FFB62C /* TodoRowItem.swift */; };
 		A4E892D32993905D001220A9 /* todo_iosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E892D22993905D001220A9 /* todo_iosApp.swift */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		A411B1AB2993FD5A00F6EEC4 /* AddTodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoView.swift; sourceTree = "<group>"; };
+		A41EFFEA2995565100EC311E /* TodoEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoEditor.swift; sourceTree = "<group>"; };
 		A4DB1BB12993978500568994 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		A4DB27682994341200FFB62C /* TodoRowItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoRowItem.swift; sourceTree = "<group>"; };
 		A4E892CF2993905D001220A9 /* todo_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = todo_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +102,7 @@
 				A4E892E8299393AA001220A9 /* TodoDetail.swift */,
 				A411B1AB2993FD5A00F6EEC4 /* AddTodoView.swift */,
 				A4DB27682994341200FFB62C /* TodoRowItem.swift */,
+				A41EFFEA2995565100EC311E /* TodoEditor.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A41EFFEB2995565100EC311E /* TodoEditor.swift in Sources */,
 				A4E892DC2993905D001220A9 /* Persistence.swift in Sources */,
 				A4DB27692994341200FFB62C /* TodoRowItem.swift in Sources */,
 				A4E892DF2993905D001220A9 /* todo_ios.xcdatamodeld in Sources */,

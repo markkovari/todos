@@ -11,7 +11,7 @@ struct TodoRowItem: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     
-    @State var todo: Todo
+    @ObservedObject var todo: Todo
     
     var body: some View {
         HStack {

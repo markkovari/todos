@@ -60,6 +60,7 @@ struct AddTodoView: View {
         withAnimation {
             let newTodo = Todo(context: viewContext)
             newTodo.timestamp = Date()
+            newTodo.id = UUID()
             newTodo.desc = description
             newTodo.title = title
             newTodo.dueDate = dueDate
