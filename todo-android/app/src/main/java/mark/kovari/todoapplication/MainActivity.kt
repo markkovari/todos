@@ -15,9 +15,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.Group
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.room.Room
+import mark.kovari.todoapplication.persistance.Persistance
 import mark.kovari.todoapplication.ui.theme.TodoApplicationTheme
 
 class MainActivity : ComponentActivity() {
+
+    val db = Room.databaseBuilder(
+        applicationContext,
+        Persistance::class.java, "todo-database-name"
+    ).build()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
